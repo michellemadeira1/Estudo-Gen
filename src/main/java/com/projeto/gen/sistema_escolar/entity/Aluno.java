@@ -1,11 +1,14 @@
 package com.projeto.gen.sistema_escolar.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -34,7 +37,15 @@ public class Aluno {
 	private  double notaSegundoModulo;
     private double media;
     
-   
+    @ManyToOne
+    @JsonIgnore 
+    @JoinColumn(name = "turma_id", nullable = false) 
+    private Turma turma;
+    
+    
+    
+    public Aluno() {}
+    
     
 	public Aluno(Long id, @NotBlank @Size(min = 3) String nome, @NotBlank @Email String email, int idade,
 			double notaPrimeiroModulo, double notaSegundoModulo, double media) {
