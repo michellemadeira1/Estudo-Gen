@@ -2,6 +2,7 @@ package com.projeto.gen.sistema_escolar.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,26 +21,36 @@ public class Aluno {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Schema(description = "Identificador único do aluno")
 	private Long id;
 	
     @NotBlank
 	@Size(min = 3)
+    @Schema(description = "Nome do aluno", example = "João Silva")
 	private String nome;
 	  
     @NotBlank
     @Email
     @Column(unique = true)  
+    @Schema(description = "Email do aluno", example = "joao.silva@example.com")
 	private String email;
     
-    
+    @Schema(description = "Idade do aluno", example = "20")
 	private int idade;
+    
+    @Schema(description = "Nota do primeiro módulo", example = "7.5")
 	private double notaPrimeiroModulo;
+    
+    @Schema(description = "Nota do segundo módulo", example = "8.0")
 	private  double notaSegundoModulo;
+    
+    @Schema(description = "Média do aluno", example = "7.75")
     private double media;
     
     @ManyToOne
     @JsonIgnore 
     @JoinColumn(name = "turma_id", nullable = false) 
+    @Schema(description = "Turma do aluno")
     private Turma turma;
     
     

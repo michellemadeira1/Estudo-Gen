@@ -1,5 +1,6 @@
 package com.projeto.gen.sistema_escolar.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,22 +14,27 @@ import jakarta.validation.constraints.Size;
 public class Funcionario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(description = "Identificador único do funcionário")
     private Long id;
 
     @NotBlank
     @Size(min = 3)
+    @Schema(description = "Nome do funcionário", example = "Maria Oliveira")
     private String nome;
 
     @NotBlank
     @Email
     @Column(unique = true)
+    @Schema(description = "Email do funcionário", example = "maria.oliveira@example.com")
     private String email;
 
     @NotBlank
     @Size(min = 6)
+    @Schema(description = "Senha do funcionário", example = "senha123")
     private String senha;
 
     @NotBlank
+    @Schema(description = "Cargo do funcionário", example = "Professor")
     private String cargo;
     
     
